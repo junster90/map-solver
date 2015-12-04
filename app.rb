@@ -8,8 +8,8 @@ class Mountain
   	end
   	@grid = @map.shift
   end
-end
 
+end
 
 niseko = Mountain.new('map.txt')
 map = niseko.map
@@ -29,6 +29,7 @@ map.each_with_index do |row, y|
 	end
 end
 
+# loops through the final coordinates of all existing routes to find new possibilities of moving and appends them to the list
 all_possible_routes.each do |route|
 
 		y = route.last[0]
@@ -63,10 +64,13 @@ all_possible_routes.each do |route|
 		end	
 end
 
+# count the number of longest routes
 number_of_longest_routes = all_possible_routes.count { |route| route.count == all_possible_routes.last.length }
 
+# finding the longest routes
 longest_routes = all_possible_routes.last(number_of_longest_routes) 
 
+# finding the coordinates of the longest runs
 longest_routes.each do |route|
 	run = []
 	route.each do |coordinate|
@@ -75,15 +79,13 @@ longest_routes.each do |route|
 	all_runs << run
 end
 
+# finding the biggest drop
 drop = []
 all_runs.each do |run|
 	drop << run.first - run.last
 end
 
-all_possible_routes.each do |r|
-	p r 
-end
-
+# printing the best run
 p best_run = all_runs[drop.index(drop.max)]
 
 
