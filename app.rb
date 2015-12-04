@@ -87,6 +87,8 @@ end
 
 # printing the best run
 p best_run = all_runs[drop.index(drop.max)]
+puts "The best run is #{best_run.length} in length!"
+puts "It has a drop of #{drop.max}!"
 
 
 
